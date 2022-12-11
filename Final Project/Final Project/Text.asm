@@ -1,12 +1,13 @@
 extrn ExitProcess : proc
 
 .DATA
-intArr QWORD 0,0,0,0,0,0,0,0,0,0
+intArr QWORD 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0; 32 nodes max
 space QWORD 8
 count DWORD 0
 node DWORD 0
 
 .CODE
+
 nodeCount PROC var1:QWORD
 
 xor rax, rax
@@ -88,10 +89,17 @@ parentAfterLeft:
 
 parentAfterRight:
 	mov rdx, [rdx+20]
+	mov r10, [rdx]
+	cmp r10, rbx
+	jz final
+
+	mov rsp, [rdx+20]
+	mov rsp, [rsp]
 	mov rcx, [rdx]
-	cmp ecx, count
-	jg final
-	jmp parentAfterLeft
+	cmp esp, ecx
+	jg parentAfterLeft
+
+	jmp parentAfterRight
 
 
 final:
@@ -187,11 +195,19 @@ parentAfterLeft:
 	jmp final
 
 parentAfterRight:
+
 	mov rdx, [rdx+20]
+	mov r10, [rdx]
+	cmp r10, rbx
+	jz final
+
+	mov rsp, [rdx+20]
+	mov rsp, [rsp]
 	mov rcx, [rdx]
-	cmp ecx, count
-	jg final
-	jmp parentAfterLeft
+	cmp esp, ecx
+	jg parentAfterLeft
+
+	jmp parentAfterRight
 
 
 final:
@@ -296,12 +312,16 @@ parentAfterRight:
 	mov [intArr + rdi], rax
 	add rdi, rsi
 
+	mov rsp, [rdx+20]
+	mov rsp, [rsp]
 	mov rcx, [rdx]
-	cmp ecx, count
-	jg final
-	jmp parentAfterLeft
+	cmp esp, ecx
+	jg parentAfterLeft
 
+	cmp esp, ebx
+	jz final
 
+	jmp parentAfterRight
 final:
 	mov [intArr + rdi], rbx
 	add rdi, rsi
@@ -404,11 +424,16 @@ parentAfterLeft:
 parentAfterRight:
 	mov rdx, [rdx+20]
 
+	mov rsp, [rdx+20]
+	mov rsp, [rsp]
 	mov rcx, [rdx]
-	cmp ecx, count
-	jg final
-	jmp parentAfterLeft
+	cmp esp, ecx
+	jg parentAfterLeft
 
+	cmp esp, ebx
+	jz final
+
+	jmp parentAfterRight
 
 final:
 	lea rcx, intArr

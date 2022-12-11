@@ -57,14 +57,23 @@ extern "C" int __stdcall nodeCount(Node*);
 
 int main()
 {
+	//max of 32 nodes
 	int num = 0;
 	Node head = Node(10);
 	head.addNode(&head, 5, &head);
 	head.addNode(&head, 3, &head);
+	head.addNode(&head, 2, &head);
+	head.addNode(&head, 4, &head);
 	head.addNode(&head, 7, &head);
+	head.addNode(&head, 6, &head);
+	head.addNode(&head, 8, &head);
 	head.addNode(&head, 15, &head);
 	head.addNode(&head, 12, &head);
+	head.addNode(&head, 11, &head);
+	head.addNode(&head, 13, &head);
 	head.addNode(&head, 20, &head);
+	head.addNode(&head, 17, &head);
+	head.addNode(&head, 21, &head);
 
 	//count
 	int count = nodeCount(&head);
