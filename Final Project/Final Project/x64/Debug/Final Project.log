@@ -1,2 +1,6 @@
 ﻿  Assembling Text.asm...
-  Final Project.vcxproj -> C:\Users\noah.thompson\Desktop\Computer Architecture\Final Project\x64\Debug\Final Project.exe
+Text.asm(102): warning A6004: procedure argument or local not referenced : var1
+Text.asm(205): warning A6004: procedure argument or local not referenced : var1
+Text.asm(315): warning A6004: procedure argument or local not referenced : var1
+Text.asm(421): warning A6004: procedure argument or local not referenced : var1
+  Final Project.vcxproj -> C:\Users\noah.thompson\Desktop\Final\Architecture-Final\Final Project\x64\Debug\Final Project.exe
